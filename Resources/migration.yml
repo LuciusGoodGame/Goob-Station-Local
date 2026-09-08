@@ -1023,6 +1023,7 @@ BorgModuleAdvancedChemical: BorgModuleAdvancedTopical
 # PIRATE START
 PosterContrabandCommunistState: PosterContrabandSolAlliance
 MagazinePistolMindbreaker: MagazinePistolCryptobiolin
+MagazinePistolCryptobiolin: null
 SpawnMobGoidaBot: SpawnMobPotyzhnobot
 PinkHandcuffs: null
 AsimovCircuitBoard: CrewsimovCircuitBoard
