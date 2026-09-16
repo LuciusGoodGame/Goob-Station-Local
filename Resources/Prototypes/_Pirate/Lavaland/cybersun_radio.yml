@@ -1,0 +1,79 @@
+- type: entity
+  parent: ClothingHeadsetAltSyndicate
+  id: ClothingHeadsetAltSyndicateCybersun
+  name: Cybersun over-ear headset
+  description: A blood-red Syndicate headset fitted with a Cybersun corporate encryption key.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndie
+      - EncryptionKeyCybersun
+  - type: RadioSoundProfile
+    transmitSound: /Audio/_Pirate/Radio/radio_talk_alter.ogg
+    receiveSound: /Audio/_Pirate/Radio/radio_receive_alter.ogg
+    allowedChannels:
+    - Syndicate
+    - Cybersun
+
+- type: startingGear
+  id: LavalandSyndicateFootsoldierGear
+  parent: SyndicateFootsoldierGear
+  equipment:
+    ears: ClothingHeadsetAltSyndicateCybersun
+    id: SyndiPDALavalandSoldier
+
+- type: startingGear
+  id: LavalandSyndicateFootsoldierTeamLeaderGear
+  parent: SyndicateFootsoldierTeamLeaderGear
+  equipment:
+    ears: ClothingHeadsetAltSyndicateCybersun
+    id: SyndiPDALavalandTeamLeader
+
+- type: startingGear
+  id: LavalandSyndicateMarshalGear
+  parent: LavalandSyndicateFootsoldierGear
+  equipment:
+    outerClothing: ClothingOuterWinterSyndieCapArmored
+    id: SyndiPDALavalandMarshal
+    pocket1: WeaponRevolverPythonAP
+    pocket2: SpeedLoaderMagnumAP
+
+- type: randomHumanoidSettings
+  id: LavalandSyndieSoldier
+  parent: SyndieSoldier
+  components:
+  - type: OrganChipsOnSpawn
+    chips:
+    - SkillChipSyndieSoldier
+    - SkillChipFieldMedicine
+    - SkillChipDatabase
+  - type: Loadout
+    prototypes: [ LavalandSyndicateFootsoldierGear ]
+    roleLoadout: [ RoleSurvivalSyndicate ]
+
+- type: randomHumanoidSettings
+  id: LavalandSyndieSoldierTeamLeader
+  parent: SyndieSoldierTeamLeader
+  components:
+  - type: OrganChipsOnSpawn
+    chips:
+    - SkillChipSyndieSoldierTeamLeader
+    - SkillChipFieldMedicine
+    - SkillChipDatabase
+  - type: Loadout
+    prototypes: [ LavalandSyndicateFootsoldierTeamLeaderGear ]
+    roleLoadout: [ RoleSurvivalSyndicate ]
+
+- type: randomHumanoidSettings
+  id: LavalandSyndieMarshal
+  parent: SyndieSoldier
+  components:
+  - type: OrganChipsOnSpawn
+    chips:
+    - SkillChipSyndieMarshal
+    - SkillChipFieldMedicine
+    - SkillChipDatabase
+  - type: Loadout
+    prototypes: [ LavalandSyndicateMarshalGear ]
+    roleLoadout: [ RoleSurvivalSyndicate ]

@@ -10,7 +10,8 @@
   markingLimits: MobShadowkinMarkingLimits
   dollPrototype: MobShadowkinDummy
   skinColoration: Hues
-  eyeColoration: NoBlack # Pirate: block black (mindbroken) eyes at character creation
+  eyeColoration: NoBlack # Pirate
+  knowledge: Human # Pirate
   naming: First
   maleFirstNames: NamesShadowkin
   femaleFirstNames: NamesShadowkin

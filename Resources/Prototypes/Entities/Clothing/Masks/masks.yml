@@ -306,7 +306,7 @@
     slots:
     - Snout
   - type: SpeakFontOverride # Goob - clown speaks pink comic sans
-    fontId: LDFComicSans
+    # fontId: LDFComicSans # Pirate: disabled because the font does not support Cyrillic.
     color: "#e93790"
 
 - type: entity
@@ -833,12 +833,24 @@
   name: neck gaiter
   description: Stylish neck gaiter for your neck, can protect from the cosmic wind?...
   components:
+  #region Pirate: syndrobe
   - type: Sprite
-    sprite: Clothing/Mask/neckgaiter.rsi
+    sprite: _Pirate/Clothing/Mask/neckgaiter.rsi
   - type: Clothing
-    sprite: Clothing/Mask/neckgaiter.rsi
+    sprite: _Pirate/Clothing/Mask/neckgaiter.rsi
+  - type: BreathMask
+  - type: Mask
+  - type: IngestionBlocker # Pirate: syndrobe - covers the mouth while worn up, auto-disabled when pulled down.
+  - type: HideLayerClothing
+    layers:
+      Snout: MASK
+    hideOnToggle: true
+  #endregion Pirate: syndrobe
   - type: IdentityBlocker
     coverage: MOUTH
+  - type: Construction # Pirate: gaiter crafting
+    graph: NeckGaiter # Pirate: gaiter crafting
+    node: neckGaiter # Pirate: gaiter crafting
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -849,10 +861,15 @@
   id: ClothingMaskNeckGaiterRed
   name: red neck gaiter
   components:
+  # Pirate: syndrobe - _Pirate copy adds the pulled-down states the inherited
+  # Mask toggle needs; without them the gaiter vanishes when pulled down.
   - type: Sprite
-    sprite: Clothing/Mask/neckgaiterred.rsi
+    sprite: _Pirate/Clothing/Mask/neckgaiterred.rsi
   - type: Clothing
-    sprite: Clothing/Mask/neckgaiterred.rsi
+    sprite: _Pirate/Clothing/Mask/neckgaiterred.rsi
+  - type: Construction # Pirate: gaiter crafting - own graph, overrides the inherited one.
+    graph: NeckGaiterRed # Pirate: gaiter crafting
+    node: neckGaiter # Pirate: gaiter crafting
 
 - type: entity
   parent: ClothingMaskClownBase
@@ -970,11 +987,18 @@
     state: icon
   - type: Clothing
     sprite: Clothing/Mask/welding-gas.rsi
+    equippedPrefix: up # Pirate: welding visor - match the initially raised welding visor
   - type: BreathMask
-  - type: IngestionBlocker
   - type: IdentityBlocker
   - type: FlashImmunity
   - type: EyeProtection
+  - type: WeldingVisor # Pirate: welding visor toggle - spawns with the visor raised (not protecting)
+    lowered: false
+    soundLower:
+      collection: PirateWeldingVisorDown
+    soundRaise:
+      collection: PirateWeldingVisorUp
+  # Pirate: welding visor toggle - the face shield only controls flash and eye protection.
   - type: PhysicalComposition #Goobstation - Recycle update
     materialComposition:
       Steel: 150
@@ -988,6 +1012,7 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    hideOnToggle: true # Pirate: welding visor toggle - only hide the snout while the visor is actually lowered
 
 # Entity tables
 - type: entityTable

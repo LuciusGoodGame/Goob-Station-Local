@@ -133,7 +133,6 @@
   abstract: true
   components:
     - type: StationCentcomm
-    - type: SyndieJail # Pirate
 
 - type: entity
   id: BaseStationEvacuation
@@ -147,6 +146,7 @@
   components:
     - type: AlertLevel
       alertLevelPrototype: stationAlerts
+    - type: AmberAlert # Goobstation - gates the amber alert level
 
 - type: entity
   id: BaseStationExpeditions

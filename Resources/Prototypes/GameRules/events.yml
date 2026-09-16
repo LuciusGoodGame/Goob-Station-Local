@@ -44,10 +44,9 @@
     - id: KingRatMigration
     - id: Fugitive # Pirate
     - id: BorerSpawn # Pirate
-    - id: ListeningPost # Pirate
     # - id: RevenantSpawn # Goob
     - id: EeepEvent # Harmony Eeep Port - imp
-    - id: SyndicateDeadDrop
+    # - id: SyndicateDeadDrop # Pirate: syndicate drop console - replaced by the always-on SyndicateDropDispatcher
     - id: BountyHunterSpawn # Pirate
       conditions:
       - !type:BountyHunterTargetCondition
@@ -65,6 +64,9 @@
     - id: ParadoxCloneSpawn
     #- id: RevenantSpawn  # GoobStation - removed till rework
     - id: SleeperAgents
+    - id: MalfAiMidround # Pirate - rare, eligible station AI only.
+      conditions:
+      - !type:MalfAiAvailableCondition
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: BlobSpawn # Goobstation - Blob

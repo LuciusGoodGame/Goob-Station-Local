@@ -1563,6 +1563,7 @@
     - VimPilot
     - DoorBumpOpener
     - AnomalyHost
+    - XenobioSlimeFavoriteFood # Goobstation
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -1586,6 +1587,7 @@
   - type: StatusIcon
   - type: TastyBlood  # Pirate
   - type: DiseaseCarrier # Goobstation
+  - type: XenovacTarget # Goobstation - Xenobio
 
 - type: entity
   name: monkey
@@ -4098,6 +4100,12 @@
     understands:
     - RootSpeak
     - TauCetiBasic
+  - type: VentCrawler # goob
+  - type: Carriable # goob
+  - type: PseudoItem # goob
+    storedOffset: 0,3
+    shape:
+    - 0,0,3,3
 
 - type: entity
   parent: MobDionaNymph

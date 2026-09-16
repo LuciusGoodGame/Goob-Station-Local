@@ -36,6 +36,13 @@
   - External
   - Cryogenics
   special:
+  # Pirate: skill chips start
+  - !type:OrganChipsSpecial
+    chips:
+    - SkillChipCombatEducation
+    - SkillChipDoctor
+    - SkillChipSurgeon
+  # Pirate: skill chips end
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
@@ -44,7 +51,7 @@
   - !type:AddComponentSpecial
     components:
     - type: SurgerySpeedModifier
-      speedModifier: 1.25 # Same as Paramedic
+      speedModifier: 1.5
 
 - type: chameleonOutfit
   id: BrigmedicChameleonOutfit

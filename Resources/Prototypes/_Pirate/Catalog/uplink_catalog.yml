@@ -48,6 +48,39 @@
     - UplinkWeaponry
 
 - type: listing
+  id: UplinkRifleSol
+  name: uplink-rifle-sol-name
+  description: uplink-rifle-sol-desc
+  icon: { sprite: _Pirate/Objects/Weapons/Guns/Rifles/sol_rifle/36x32.rsi, state: icon }
+  productEntity: WeaponRifleSol
+  cost:
+    Telecrystal: 55
+  categories:
+    - UplinkWeaponry
+
+- type: listing
+  id: UplinkShotgunSol
+  name: uplink-shotgun-sol-name
+  description: uplink-shotgun-sol-desc
+  icon: { sprite: _Pirate/Objects/Weapons/Guns/Shotguns/sol_shotgun/35x32.rsi, state: bolt-open }
+  productEntity: WeaponShotgunSol
+  cost:
+    Telecrystal: 40
+  categories:
+    - UplinkWeaponry
+
+- type: listing
+  id: UplinkSubMachineGunSol
+  name: uplink-smg-sol-name
+  description: uplink-smg-sol-desc
+  icon: { sprite: _Pirate/Objects/Weapons/Guns/SMGs/sol_smg/40x32.rsi, state: icon }
+  productEntity: WeaponSubMachineGunSol
+  cost:
+    Telecrystal: 45
+  categories:
+    - UplinkWeaponry
+
+- type: listing
   id: uplinkFlamethrower
   name: uplink-flamethrower-name
   description: uplink-flamethrower-desc
@@ -267,3 +300,20 @@
     Telecrystal: 30
   categories:
   - UplinkWearables
+
+- type: listing
+  id: UplinkDeathRattleImplanterCybersun
+  name: uplink-death-rattle-implanter-cybersun-name
+  description: uplink-death-rattle-implanter-cybersun-desc
+  icon: { sprite: /Textures/Objects/Specific/Medical/syndi_implanter.rsi, state: implanter1 }
+  productEntity: DeathRattleImplanterCybersun
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkImplants
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+      - ContractorUplink
