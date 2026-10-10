@@ -79,6 +79,7 @@ public sealed class IndexAdminSystem : EntitySystem
         });
     }
 
+    // Mentors have admin data but must not receive Index admin controls.
     private bool IsIndexAdmin(EntityUid user)
     {
         return _admin.HasAdminFlag(user, AdminFlags.Admin);
