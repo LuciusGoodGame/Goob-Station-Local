@@ -327,6 +327,15 @@
       mindRoles:
       - MindRoleTraitor
 
+#- type: entity
+#  id: TraitorReinforcement
+#  parent: Traitor
+#  components:
+#  - type: TraitorRule
+#    giveUplink: false
+#    giveCodewords: false # It would actually give them a different set of codewords than the regular traitors, anyway
+#    giveBriefing: false
+
 - type: entity
   id: Revolutionary
   parent: BaseGameRule
@@ -335,6 +344,11 @@
     minPlayers: 15
     chaosScore: 1000 # Goobstation - intentionally not per-antag
   - type: RevolutionaryRule
+  # Pirate: skill chips start - only head revs are selected by this rule, converts get nothing
+  - type: AntagPlayerEffects
+    packages:
+    - TraitorSkills
+  # Pirate: skill chips end
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn # Goobstation
     definitions:

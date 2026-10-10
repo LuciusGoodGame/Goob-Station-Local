@@ -3,6 +3,7 @@
 using Content.Goobstation.Shared.MisandryBox.JumpScare;
 using Content.Pirate.Shared.Caduceus;
 using Content.Pirate.Shared.Index;
+using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
@@ -47,7 +48,7 @@ public sealed class IndexAdminSystem : EntitySystem
 
     private void OnPagerVerb(Entity<IndexPagerComponent> ent, ref GetVerbsEvent<Verb> args)
     {
-        if (!args.CanAccess || !_admin.IsAdmin(args.User))
+        if (!args.CanAccess || !IsIndexAdmin(args.User))
             return;
 
         var user = args.User;
@@ -62,7 +63,7 @@ public sealed class IndexAdminSystem : EntitySystem
 
     private void OnMemberVerb(Entity<IndexMemberComponent> ent, ref GetVerbsEvent<Verb> args)
     {
-        if (!args.CanAccess || !_admin.IsAdmin(args.User))
+        if (!args.CanAccess || !IsIndexAdmin(args.User))
             return;
 
         if (ent.Comp.Pager is not { } pager || !Exists(pager))
@@ -78,6 +79,12 @@ public sealed class IndexAdminSystem : EntitySystem
         });
     }
 
+    // Mentors have admin data but must not receive Index admin controls.
+    private bool IsIndexAdmin(EntityUid user)
+    {
+        return _admin.HasAdminFlag(user, AdminFlags.Admin);
+    }
+
     private void OpenAdminMenu(EntityUid pagerUid, ICommonSession? session)
     {
         if (session == null || !TryComp<IndexPagerComponent>(pagerUid, out var pager))
@@ -91,7 +98,7 @@ public sealed class IndexAdminSystem : EntitySystem
 
     private void OnAddKarma(Entity<IndexPagerComponent> ent, ref IndexAdminAddKarmaMessage args)
     {
-        if (!_admin.IsAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
+        if (!IsIndexAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
             return;
 
         _pager.AddKarma(memberUid, args.Amount);
@@ -100,7 +107,7 @@ public sealed class IndexAdminSystem : EntitySystem
 
     private void OnRemoveKarma(Entity<IndexPagerComponent> ent, ref IndexAdminRemoveKarmaMessage args)
     {
-        if (!_admin.IsAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
+        if (!IsIndexAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
             return;
 
         _pager.RemoveKarma(memberUid, args.Amount);
@@ -109,7 +116,7 @@ public sealed class IndexAdminSystem : EntitySystem
 
     private void OnSendPrescription(Entity<IndexPagerComponent> ent, ref IndexAdminSendPrescriptionMessage args)
     {
-        if (!_admin.IsAdmin(args.Actor))
+        if (!IsIndexAdmin(args.Actor))
             return;
 
         var text = args.Text.Trim();
@@ -125,7 +132,7 @@ public sealed class IndexAdminSystem : EntitySystem
 
     private void OnSetNextWeapon(Entity<IndexPagerComponent> ent, ref IndexAdminSetNextWeaponMessage args)
     {
-        if (!_admin.IsAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
+        if (!IsIndexAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
             return;
 
         // Inactive is the inert slime, not a weapon form - ignore it instead of bricking the queue.
@@ -142,7 +149,7 @@ public sealed class IndexAdminSystem : EntitySystem
     /// </summary>
     private void OnJumpscare(Entity<IndexPagerComponent> ent, ref IndexAdminJumpscareMessage args)
     {
-        if (!_admin.IsAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
+        if (!IsIndexAdmin(args.Actor) || !TryGetMember(ent, out var memberUid))
             return;
 
         if (!_player.TryGetSessionByEntity(memberUid, out var session))

@@ -155,3 +155,7 @@ remilia-power-initialization-feedback = З глибин між сном іяво
 remilia-power-metapsionic-feedback = {CAPITALIZE($entity)} поділяє душу з нічним створінням, що любить фрукти.
 # Відгуки для конкретних сутностей
 mantis-pendulum-hot-message = Маятник стає неприємно гарячим у вашій руці.
+
+assay-body = Виявлено псіонічні здібності у {$entity}:
+assay-response-refuse = Я тобі нічого не скажу!
+assay-response-why-scan = Чому ви мене скануєте?

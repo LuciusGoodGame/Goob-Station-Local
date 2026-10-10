@@ -14,12 +14,16 @@ public sealed class ContractsBUI : BoundUserInterface
 
     protected override void Open()
     {
+        if (IsOpened)
+            return;
+
         base.Open();
 
         _window = this.CreateWindow<ContractsWindow>();
         _window.OnAccept += i => SendMessage(new ContractsAcceptMessage(i));
         _window.OnComplete += i => SendMessage(new ContractsCompleteMessage(i));
         _window.OnReject += i => SendMessage(new ContractsRejectMessage(i));
+        _window.OnAbandon += i => SendMessage(new ContractsAbandonMessage(i));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

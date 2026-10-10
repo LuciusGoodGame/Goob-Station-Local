@@ -38,7 +38,7 @@ namespace Content.Shared.Humanoid;
 ///     you still need a local copy so that players can set up their
 ///     characters.
 /// </summary>
-public abstract class SharedHumanoidAppearanceSystem : EntitySystem
+public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem //goob edit
 {
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly INetManager _netManager = default!;
@@ -181,6 +181,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
         targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
+        targetHumanoid.CustomMarkings = new(sourceHumanoid.CustomMarkings); // Pirate
 
         targetHumanoid.Gender = sourceHumanoid.Gender;
 
@@ -570,6 +571,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         EnsureDefaultMarkings(uid, humanoid);
+        humanoid.CustomMarkings = ProfileCustomMarkings(profile); // Pirate
         SetBarkVoice(uid, profile.BarkVoice, humanoid); // Goob Station - Barks
 
         humanoid.Gender = profile.Gender;
