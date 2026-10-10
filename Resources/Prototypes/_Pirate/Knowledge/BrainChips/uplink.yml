@@ -25,10 +25,10 @@
   id: UplinkSkillChipUnarmed
   name: uplink-skill-chip-weapons-unarmed-name
   description: uplink-skill-chip-weapons-unarmed-desc
-  productEntity: SkillChipUnarmed
+  productEntity: SkillChipUnarmedSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null # Pirate: skill chips are excluded from automatic store discounts.
   categories:
   - UplinkSkills
 
@@ -36,10 +36,10 @@
   id: UplinkSkillChipBludgeon
   name: uplink-skill-chip-weapons-bludgeon-name
   description: uplink-skill-chip-weapons-bludgeon-desc
-  productEntity: SkillChipBludgeon
+  productEntity: SkillChipBludgeonSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -47,10 +47,10 @@
   id: UplinkSkillChipShortBlade
   name: uplink-skill-chip-weapons-knife-name
   description: uplink-skill-chip-weapons-knife-desc
-  productEntity: SkillChipShortBlade
+  productEntity: SkillChipShortBladeSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -58,10 +58,10 @@
   id: UplinkSkillChipLongBlade
   name: uplink-skill-chip-weapons-sword-name
   description: uplink-skill-chip-weapons-sword-desc
-  productEntity: SkillChipLongBlade
+  productEntity: SkillChipLongBladeSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -69,10 +69,10 @@
   id: UplinkSkillChipPolearm
   name: uplink-skill-chip-weapons-polearm-name
   description: uplink-skill-chip-weapons-polearm-desc
-  productEntity: SkillChipPolearm
+  productEntity: SkillChipPolearmSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -80,10 +80,10 @@
   id: UplinkSkillChipNonLethal
   name: uplink-skill-chip-weapons-non-lethal-name
   description: uplink-skill-chip-weapons-non-lethal-desc
-  productEntity: SkillChipNonLethal
+  productEntity: SkillChipNonLethalSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -91,10 +91,10 @@
   id: UplinkSkillChipTool
   name: uplink-skill-chip-weapons-tool-name
   description: uplink-skill-chip-weapons-tool-desc
-  productEntity: SkillChipTool
+  productEntity: SkillChipToolSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -102,10 +102,10 @@
   id: UplinkSkillChipEnergy
   name: uplink-skill-chip-weapons-energy-name
   description: uplink-skill-chip-weapons-energy-desc
-  productEntity: SkillChipEnergy
+  productEntity: SkillChipEnergySyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -114,10 +114,10 @@
   id: UplinkSkillChipSmg
   name: uplink-skill-chip-weapons-smg-name
   description: uplink-skill-chip-weapons-smg-desc
-  productEntity: SkillChipSMG
+  productEntity: SkillChipSMGSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -125,10 +125,10 @@
   id: UplinkSkillChipPistol
   name: uplink-skill-chip-weapons-pistol-name
   description: uplink-skill-chip-weapons-pistol-desc
-  productEntity: SkillChipPistol
+  productEntity: SkillChipPistolSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -136,10 +136,10 @@
   id: UplinkSkillChipRifle
   name: uplink-skill-chip-weapons-rifle-name
   description: uplink-skill-chip-weapons-rifle-desc
-  productEntity: SkillChipRifle
+  productEntity: SkillChipRifleSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -147,10 +147,10 @@
   id: UplinkSkillChipShotgun
   name: uplink-skill-chip-weapons-shotgun-name
   description: uplink-skill-chip-weapons-shotgun-desc
-  productEntity: SkillChipShotgun
+  productEntity: SkillChipShotgunSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -158,10 +158,10 @@
   id: UplinkSkillChipSniper
   name: uplink-skill-chip-weapons-sniper-name
   description: uplink-skill-chip-weapons-sniper-desc
-  productEntity: SkillChipSniper
+  productEntity: SkillChipSniperSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -169,10 +169,10 @@
   id: UplinkSkillChipLaser
   name: uplink-skill-chip-weapons-laser-name
   description: uplink-skill-chip-weapons-laser-desc
-  productEntity: SkillChipLaser
+  productEntity: SkillChipLaserSyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
   categories:
   - UplinkSkills
 
@@ -180,9 +180,20 @@
   id: UplinkSkillChipHeavy
   name: uplink-skill-chip-weapons-heavy-name
   description: uplink-skill-chip-weapons-heavy-desc
-  productEntity: SkillChipHeavy
+  productEntity: SkillChipHeavySyndicate
   cost:
     Telecrystal: 5
-  saleBlacklist: true
+  discountCategory: null
+  categories:
+  - UplinkSkills
+
+- type: listing
+  id: UplinkSkillChipThrowingTampered
+  name: uplink-skill-chip-throwing-tampered-name
+  description: uplink-skill-chip-throwing-tampered-desc
+  productEntity: SkillChipThrowingTampered
+  cost:
+    Telecrystal: 5
+  discountCategory: null
   categories:
   - UplinkSkills

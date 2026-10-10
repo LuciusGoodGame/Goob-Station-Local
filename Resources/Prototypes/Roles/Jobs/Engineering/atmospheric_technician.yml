@@ -31,7 +31,7 @@
   # Pirate: skill chips start
   - !type:OrganChipsSpecial
     chips:
-    - SkillChipEducation
+    - SkillChipEducationPilot # Pirate: piloting skill
     - SkillChipDatabase
     - SkillChipBludgeon
   # Pirate: skill chips end
@@ -47,7 +47,7 @@
   equipment:
     eyes: ClothingEyesGlassesMeson
     id: AtmosPDA
-    belt: ClothingBeltUtilityEngineering
+#    belt: ClothingBeltUtilityEngineering # Goobstation - Belt Change
     ears: ClothingHeadsetEngineering
   #storage:
     #back:

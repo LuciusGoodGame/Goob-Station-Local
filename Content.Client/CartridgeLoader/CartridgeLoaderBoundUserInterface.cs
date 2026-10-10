@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client.CartridgeLoader.Cartridges; // Goobstation - fix-crew-manifest-open-refresh
 using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader;
 using Robust.Client.UserInterface;
@@ -41,15 +42,22 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
 
         var activeUI = _entManager.GetEntity(loaderUiState.ActiveUI);
 
+        // Goobstation Start - fix-crew-manifest-open-refresh
+        // A reopened PDA reuses its BUI, so refresh the attached manifest without recreating its controls.
+        if (_activeProgram == activeUI && _activeUiFragment is not null)
+        {
+            if (_activeCartridgeUI is CrewManifestUi && activeUI is { } activeProgram)
+                SendCartridgeUiReadyEvent(activeProgram);
+
+            return;
+        }
+        // Goobstation End
+
         _activeProgram = activeUI;
 
         var ui = RetrieveCartridgeUI(activeUI);
         var comp = RetrieveCartridgeComponent(activeUI);
         var control = ui?.GetUIFragmentRoot();
-
-        //Prevent the same UI fragment from getting disposed and attached multiple times
-        if (_activeUiFragment?.GetType() == control?.GetType())
-            return;
 
         if (_activeUiFragment is not null)
             DetachCartridgeUI(_activeUiFragment);
@@ -140,7 +148,17 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
     private UIFragment? RetrieveCartridgeUI(EntityUid? cartridgeUid)
     {
         var component = EntMan.GetComponentOrNull<UIFragmentComponent>(cartridgeUid);
-        component?.Ui?.Setup(this, cartridgeUid);
-        return component?.Ui;
+        if (component?.Ui is not { } ui)
+            return null;
+
+        // Re-run Setup only when needed: first attach, a different fragment
+        // instance, or the previously shown control was disposed (the
+        // program was closed and reopened). Setup re-creates fragment
+        // controls, so blindly re-running it on every state push would
+        // discard live fragment state.
+        var control = ui.GetUIFragmentRoot();
+        if (_activeCartridgeUI != ui || control is not { Disposed: false })
+            ui.Setup(this, cartridgeUid);
+        return ui;
     }
 }

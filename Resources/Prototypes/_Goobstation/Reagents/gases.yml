@@ -247,13 +247,13 @@
         conditions:
         - !type:ReagentCondition
           reagent: Healium
-          max: 24
+          max: 23.99 # Pirate: healium nerf
         ignoreResistances: true
         damage:
           groups:
-            Burn: -2
-            Toxin: -5
-            Brute: -2
+            Burn: -2 # Pirate: healium buff
+            Toxin: -5 # Pirate: healium buff
+            Brute: -2 # Pirate: healium buff
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -262,9 +262,9 @@
         ignoreResistances: true
         damage:
           groups:
-            Burn: -20
-            Toxin: -50
-            Brute: -20
+            Burn: -6 # Pirate: healium buff
+            Toxin: -15 # Pirate: healium buff
+            Brute: -6 # Pirate: healium buff
       - !type:PopupMessage
         conditions:
         - !type:ReagentCondition
@@ -277,7 +277,7 @@
         visualType: Medium
         messages: [ "effect-sleepy" ]
         probability: 0.01
-      - !type:GenericStatusEffect
+      - !type:ModifyStatusEffect # Pirate: healium nerf
         conditions:
         - !type:ReagentCondition
           reagent: Healium
@@ -285,33 +285,37 @@
         - !type:BloodReagentThresholdCondition
           reagent: NitrosylPlasmide
           max: 0.01
-        key: ForcedSleep
-        component: ForcedSleeping
+        effectProto: StatusEffectForcedSleeping # Pirate: healium nerf
         time: 1
+        type: Update # Pirate: healium nerf
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectOpiateNod
         type: Add
-      - !type:Drunk
-        boozePower: 45
+        time: 4
         conditions:
         - !type:ReagentCondition
           reagent: Healium
           min: 4
       - !type:Oxygenate
         conditions:
-        - !type:MetabolizerTypeCondition # Fuck you
+        - !type:MetabolizerTypeCondition #Fuck you
           type: [Hydrakin]
     Gas:
+      #region Pirate: healium buff
+      # Pirate: healium buff - caps gas healing at 810 per breath; 23.99/24 are inclusive at 0.01 precision.
+      #endregion Pirate: healium buff
       effects:
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Healium
-          max: 24
+          max: 23.99 # Pirate: healium nerf
         ignoreResistances: true
         damage:
           groups:
-            Burn: -2
-            Toxin: -5
-            Brute: -2
+            Burn: -2 # Pirate: healium buff
+            Toxin: -5 # Pirate: healium buff
+            Brute: -2 # Pirate: healium buff
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -320,9 +324,9 @@
         ignoreResistances: true
         damage:
           groups:
-            Burn: -20
-            Toxin: -50
-            Brute: -20
+            Burn: -6 # Pirate: healium buff
+            Toxin: -15 # Pirate: healium buff
+            Brute: -6 # Pirate: healium buff
       - !type:PopupMessage
         conditions:
         - !type:ReagentCondition
@@ -335,7 +339,15 @@
         visualType: Medium
         messages: [ "effect-sleepy" ]
         probability: 0.01
-      - !type:GenericStatusEffect
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectOpiateNod
+        type: Add
+        time: 4
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 4
+      - !type:ModifyStatusEffect # Pirate: healium nerf
         conditions:
         - !type:ReagentCondition
           reagent: Healium
@@ -343,16 +355,9 @@
         - !type:BloodReagentThresholdCondition
           reagent: NitrosylPlasmide
           max: 0.01
-        key: ForcedSleep
-        component: ForcedSleeping
+        effectProto: StatusEffectForcedSleeping # Pirate: healium nerf
         time: 1
-        type: Add
-      - !type:Drunk
-        boozePower: 45
-        conditions:
-        - !type:ReagentCondition
-          reagent: Healium
-          min: 4
+        type: Update # Pirate: healium nerf
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition # Fuck you

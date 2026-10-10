@@ -42,12 +42,20 @@
 - type: randomHumanoidSettings
   id: LavalandSyndieSoldier
   parent: SyndieSoldier
+  speciesBlacklist:
+  - Monkey
+  - Kobold
+  - Abductor
+  - Yowie
+  - IPC
+  - Diona
+  - Plasmaman
   components:
   - type: OrganChipsOnSpawn
     chips:
     - SkillChipSyndieSoldier
-    - SkillChipFieldMedicine
-    - SkillChipDatabase
+    - SkillChipFieldMedicineSyndicate
+    - SkillChipDatabaseSyndicate
   - type: Loadout
     prototypes: [ LavalandSyndicateFootsoldierGear ]
     roleLoadout: [ RoleSurvivalSyndicate ]
@@ -55,12 +63,20 @@
 - type: randomHumanoidSettings
   id: LavalandSyndieSoldierTeamLeader
   parent: SyndieSoldierTeamLeader
+  speciesBlacklist:
+  - Monkey
+  - Kobold
+  - Abductor
+  - Yowie
+  - IPC
+  - Diona
+  - Plasmaman
   components:
   - type: OrganChipsOnSpawn
     chips:
     - SkillChipSyndieSoldierTeamLeader
-    - SkillChipFieldMedicine
-    - SkillChipDatabase
+    - SkillChipFieldMedicineSyndicate
+    - SkillChipDatabaseSyndicate
   - type: Loadout
     prototypes: [ LavalandSyndicateFootsoldierTeamLeaderGear ]
     roleLoadout: [ RoleSurvivalSyndicate ]
@@ -68,12 +84,45 @@
 - type: randomHumanoidSettings
   id: LavalandSyndieMarshal
   parent: SyndieSoldier
+  speciesBlacklist:
+  - Monkey
+  - Kobold
+  - Abductor
+  - Yowie
+  - IPC
+  - Diona
+  - Plasmaman
   components:
   - type: OrganChipsOnSpawn
     chips:
     - SkillChipSyndieMarshal
-    - SkillChipFieldMedicine
-    - SkillChipDatabase
+    - SkillChipFieldMedicineSyndicate
+    - SkillChipDatabaseSyndicate
   - type: Loadout
     prototypes: [ LavalandSyndicateMarshalGear ]
     roleLoadout: [ RoleSurvivalSyndicate ]
+
+- type: randomHumanoidSettings
+  id: LavalandLizardGasStationStaff
+  parent: LizardGasStationStaff
+  speciesBlacklist:
+  - Monkey
+  - Kobold
+  - Abductor
+  - Yowie
+  - IPC
+  - Diona
+  - Plasmaman
+  - Human  
+  - Dwarf  
+  - SlimePerson  
+  - Arachnid  
+  - Moth  
+  - Vox  
+  - Vulpkanin 
+  - Felinid
+  - Harpy
+  components:
+    - type: Loadout  
+      prototypes: [ VisitorChef ]
+      roleLoadout: [ RoleSurvivalStandard ]

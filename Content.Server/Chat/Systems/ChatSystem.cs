@@ -377,6 +377,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         else
             sendType = InGameOOCChatType.Dead;
 
+        if (RejectChatBannedMessage(player, sendType)) // Pirate: chat ban enforcement
+            return; // Pirate: chat ban enforcement
+
         // If crit player LOOC is disabled, don't send the message at all.
         if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
             return;
@@ -512,6 +515,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var Number = $"{sourseCollectiveMindComp.Minds[collectiveMind.ID]}";
 
         var admins = _adminManager.ActiveAdmins
+            .Where(p => _adminManager.HasAdminFlag(p, AdminFlags.Adminchat)) // Pirate: staff chats - antag hive chat was copied to every admin, mentors included
             .Select(p => p.Channel);
 
         string messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
@@ -1022,13 +1026,13 @@ public sealed partial class ChatSystem : SharedChatSystem
                 initialResult = MessageRangeCheckResult.Full;
                 break;
             case ChatTransmitRange.GhostRangeLimit:
-                initialResult = (data.Observer && data.Range < 0 && !_adminManager.IsAdmin(session)) ? MessageRangeCheckResult.HideChat : MessageRangeCheckResult.Full;
+                initialResult = (data.Observer && data.Range < 0 && !_adminManager.HasAdminFlag(session, AdminFlags.Admin)) ? MessageRangeCheckResult.HideChat : MessageRangeCheckResult.Full; // Pirate: staff permissions - any rank (mentors too) heard ghost chat station-wide
                 break;
             case ChatTransmitRange.HideChat:
                 initialResult = MessageRangeCheckResult.HideChat;
                 break;
             case ChatTransmitRange.NoGhosts:
-                initialResult = (data.Observer && !_adminManager.IsAdmin(session)) ? MessageRangeCheckResult.Disallowed : MessageRangeCheckResult.Full;
+                initialResult = (data.Observer && !_adminManager.HasAdminFlag(session, AdminFlags.Admin)) ? MessageRangeCheckResult.Disallowed : MessageRangeCheckResult.Full; // Pirate: staff permissions - same as above
                 break;
         }
         var insistHideChat = data.HideChatOverride ?? false;
@@ -1178,7 +1182,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             .AddWhereAttachedEntity(HasComp<GhostComponent>)
             .AddWhereAttachedEntity(_scrying.IsScryingOrbEquipped) // Goobstation
             .Recipients
-            .Union(_adminManager.ActiveAdmins)
+            .Union(_adminManager.ActiveAdmins.Where(p => _adminManager.HasAdminFlag(p, AdminFlags.Admin))) // Pirate: staff chats - deadchat went to every living admin, mentors included; ADMIN matches dsay
             .Select(p => p.Channel);
     }
 
